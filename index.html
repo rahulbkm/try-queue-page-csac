@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamics 365 - Copilot Service admin center</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- SVG Icons Definition -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="icon-waffle" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="4" height="4" fill="currentColor"/>
+            <rect x="10" y="3" width="4" height="4" fill="currentColor"/>
+            <rect x="17" y="3" width="4" height="4" fill="currentColor"/>
+            <rect x="3" y="10" width="4" height="4" fill="currentColor"/>
+            <rect x="10" y="10" width="4" height="4" fill="currentColor"/>
+            <rect x="17" y="10" width="4" height="4" fill="currentColor"/>
+            <rect x="3" y="17" width="4" height="4" fill="currentColor"/>
+            <rect x="10" y="17" width="4" height="4" fill="currentColor"/>
+            <rect x="17" y="17" width="4" height="4" fill="currentColor"/>
+        </symbol>
+        <symbol id="icon-search" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+            <line x1="16" y1="16" x2="20" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="icon-bell" viewBox="0 0 24 24">
+            <path d="M12 2C8.5 2 6 4.5 6 8v4l-2 2v1h16v-1l-2-2V8c0-3.5-2.5-6-6-6z" fill="currentColor"/>
+            <circle cx="12" cy="20" r="2" fill="currentColor"/>
+        </symbol>
+        <symbol id="icon-plus" viewBox="0 0 24 24">
+            <line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="icon-settings" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="icon-help" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 9c0-1.5 1.5-3 3-3s3 1.5 3 3c0 1.5-1.5 2-3 3v1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="17" r="1" fill="currentColor"/>
+        </symbol>
+        <symbol id="icon-smile" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="9" cy="10" r="1" fill="currentColor"/>
+            <circle cx="15" cy="10" r="1" fill="currentColor"/>
+            <path d="M8 14c1 2 3 3 4 3s3-1 4-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="icon-home" viewBox="0 0 24 24">
+            <path d="M3 12l9-9 9 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5 10v9a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1v-9" fill="none" stroke="currentColor" stroke-width="2"/>
+        </symbol>
+        <symbol id="icon-magic" viewBox="0 0 24 24">
+            <path d="M15 4l-11 11 4 4 11-11-4-4z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M18 2l2 2M14 6l-2-2M20 8l2-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="icon-grid" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="7" height="7" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+        </symbol>
+        <symbol id="icon-users" viewBox="0 0 24 24">
+            <circle cx="9" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="16" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M21 21v-2a3 3 0 00-3-3h-1" fill="none" stroke="currentColor" stroke-width="2"/>
+        </symbol>
+        <symbol id="icon-robot" viewBox="0 0 24 24">
+            <rect x="4" y="8" width="16" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="9" cy="14" r="2" fill="currentColor"/>
+            <circle cx="15" cy="14" r="2" fill="currentColor"/>
+            <line x1="12" y1="4" x2="12" y2="8" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="3" r="1.5" fill="currentColor"/>
+        </symbol>
+        <symbol id="icon-chat" viewBox="0 0 24 24">
+            <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" fill="none" stroke="currentColor" stroke-width="2"/>
+        </symbol>
+        <symbol id="icon-target" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="2" fill="currentColor"/>
+        </symbol>
+        <symbol id="icon-queue" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="4" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+            <rect x="3" y="10" width="18" height="4" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+            <rect x="3" y="16" width="18" height="4" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+        </symbol>
+        <symbol id="icon-route" viewBox="0 0 24 24">
+            <circle cx="6" cy="6" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="18" cy="18" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 6h6a3 3 0 013 3v6" fill="none" stroke="currentColor" stroke-width="2"/>
+        </symbol>
+        <symbol id="icon-stream" viewBox="0 0 24 24">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="icon-folder" viewBox="0 0 24 24">
+            <path d="M3 6v12a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" fill="none" stroke="currentColor" stroke-width="2"/>
+        </symbol>
+        <symbol id="icon-user-cog" viewBox="0 0 24 24">
+            <circle cx="9" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M3 21v-2a4 4 0 014-4h4" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="18" cy="16" r="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M18 12v1.5M18 18.5v1.5M14.5 14.5l1 1M20.5 17.5l1 1M14 16h1.5M20.5 16h1.5M14.5 17.5l1-1M20.5 14.5l1-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="icon-clipboard" viewBox="0 0 24 24">
+            <rect x="5" y="3" width="14" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 7h6M9 11h6M9 15h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="icon-window" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M3 9h18M9 9v12" stroke="currentColor" stroke-width="2"/>
+        </symbol>
+        <symbol id="icon-chart" viewBox="0 0 24 24">
+            <path d="M3 3v18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M7 14l4-4 4 4 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="icon-book" viewBox="0 0 24 24">
+            <path d="M4 19.5A2.5 2.5 0 016.5 17H20" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" fill="none" stroke="currentColor" stroke-width="2"/>
+        </symbol>
+        <symbol id="icon-pie" viewBox="0 0 24 24">
+            <path d="M21.21 15.89A10 10 0 118 2.83" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M22 12A10 10 0 0012 2v10z" fill="none" stroke="currentColor" stroke-width="2"/>
+        </symbol>
+        <symbol id="icon-calendar" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="icon-file" viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M14 2v6h6M8 13h8M8 17h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="icon-refresh" viewBox="0 0 24 24">
+            <path d="M1 4v6h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M23 20v-6h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20.49 9A9 9 0 005.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 013.51 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="icon-eye" viewBox="0 0 24 24">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+        </symbol>
+        <symbol id="icon-user-check" viewBox="0 0 24 24">
+            <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" fill="none" stroke="currentColor" stroke-width="2"/>
+            <circle cx="8.5" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M17 11l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="icon-sort-down" viewBox="0 0 24 24">
+            <path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+    </svg>
+
+    <!-- Header Bar -->
+    <header class="header">
+        <div class="header-left">
+            <button class="waffle-btn" aria-label="App launcher">
+                <svg class="icon"><use href="#icon-waffle"/></svg>
+            </button>
+            <span class="dynamics-text">Dynamics 365</span>
+            <span class="separator">|</span>
+            <a href="#" class="admin-center-link">Copilot Service admin center</a>
+        </div>
+        <div class="header-center">
+            <div class="search-container">
+                <svg class="icon search-icon"><use href="#icon-search"/></svg>
+                <input type="text" class="search-input" placeholder="Search">
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="header-icon-btn" aria-label="Notifications">
+                <svg class="icon"><use href="#icon-bell"/></svg>
+            </button>
+            <button class="header-icon-btn" aria-label="Add">
+                <svg class="icon"><use href="#icon-plus"/></svg>
+            </button>
+            <button class="header-icon-btn" aria-label="Settings">
+                <svg class="icon"><use href="#icon-settings"/></svg>
+            </button>
+            <button class="header-icon-btn" aria-label="Help">
+                <svg class="icon"><use href="#icon-help"/></svg>
+            </button>
+            <button class="header-icon-btn" aria-label="Feedback">
+                <svg class="icon"><use href="#icon-smile"/></svg>
+            </button>
+            <div class="user-avatar">AU</div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Get started</div>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-home"/></svg>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-search"/></svg>
+                    <span>Search admin sett...</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-magic"/></svg>
+                    <span>Guided channel s...</span>
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Customer support</div>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-grid"/></svg>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-users"/></svg>
+                    <span>User management</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-robot"/></svg>
+                    <span>AI Agents</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-chat"/></svg>
+                    <span>Channels</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-target"/></svg>
+                    <span>Intent</span>
+                </a>
+                <a href="#" class="sidebar-item active">
+                    <svg class="icon"><use href="#icon-queue"/></svg>
+                    <span>Queues</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-route"/></svg>
+                    <span>Routing</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-stream"/></svg>
+                    <span>Workstreams</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-folder"/></svg>
+                    <span>Case settings</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-user-cog"/></svg>
+                    <span>Customer settings</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-clipboard"/></svg>
+                    <span>Quality managem...</span>
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Support experience</div>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-grid"/></svg>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-window"/></svg>
+                    <span>Workspaces</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-chart"/></svg>
+                    <span>Productivity</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-book"/></svg>
+                    <span>Knowledge</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-users"/></svg>
+                    <span>Collaboration</span>
+                </a>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Operations</div>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-grid"/></svg>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-pie"/></svg>
+                    <span>Insights</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-calendar"/></svg>
+                    <span>Calendar</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <svg class="icon"><use href="#icon-file"/></svg>
+                    <span>Service terms</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Top Section -->
+            <div class="content-header">
+                <div class="content-header-left">
+                    <button class="refresh-btn">
+                        <svg class="icon"><use href="#icon-refresh"/></svg>
+                    </button>
+                    <nav class="breadcrumb">
+                        <a href="#">Queues</a>
+                        <span class="breadcrumb-separator">&gt;</span>
+                        <span>Advanced queues</span>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="queue-header">
+                <div class="queue-title-section">
+                    <h1 class="queue-title">CEA-Q-Bot-Queue</h1>
+                    <a href="#" class="edit-link">Edit</a>
+                </div>
+                <div class="queue-info">
+                    <div class="queue-info-item">
+                        <span class="queue-info-label">Type</span>
+                        <span class="queue-info-value">Messaging</span>
+                    </div>
+                    <div class="queue-info-item">
+                        <span class="queue-info-label">Owner</span>
+                        <span class="queue-info-value">Aurora365 User6</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Table Section -->
+            <section class="card users-section">
+                <div class="card-header">
+                    <h2 class="card-title">Users</h2>
+                    <div class="card-actions">
+                        <div class="table-search">
+                            <svg class="icon"><use href="#icon-search"/></svg>
+                            <input type="text" placeholder="Search">
+                        </div>
+                        <a href="#" class="see-more-link">See more</a>
+                        <button class="btn btn-primary">
+                            <svg class="icon"><use href="#icon-plus"/></svg>
+                            Add users
+                        </button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name
+                                    <svg class="icon icon-sort"><use href="#icon-sort-down"/></svg>
+                                </th>
+                                <th>Type</th>
+                                <th>Role</th>
+                                <th>Capacity profile</th>
+                                <th>Capacity</th>
+                                <th>Business unit</th>
+                                <th>Date added</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar-small">C</div>
+                                        <span>Copilot CIA-M-1 (Microsoft Co...</span>
+                                    </div>
+                                </td>
+                                <td>User</td>
+                                <td>Representative</td>
+                                <td></td>
+                                <td>2000000000</td>
+                                <td>aurorabapenve4109</td>
+                                <td>10/10/2025</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-footer">
+                    <span class="pagination-info">1 of 1</span>
+                </div>
+            </section>
+
+            <!-- Assignment Method Card -->
+            <section class="card assignment-method">
+                <div class="card-header">
+                    <h2 class="card-title">Assignment method</h2>
+                    <a href="#" class="learn-more-link">Learn more</a>
+                </div>
+                <div class="card-subheader">
+                    <a href="#" class="see-more-link">
+                        <svg class="icon"><use href="#icon-eye"/></svg>
+                        See more
+                    </a>
+                </div>
+                <div class="assignment-content">
+                    <div class="assignment-icon">
+                        <svg class="icon"><use href="#icon-user-check"/></svg>
+                    </div>
+                    <div class="assignment-details">
+                        <div class="assignment-title">
+                            <span>Highest capacity</span>
+                            <span class="badge badge-readonly">Read-only</span>
+                        </div>
+                        <p class="assignment-description">
+                            Work is assigned to the person with the most capacity when representatives match the routing rules for skills and presence
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Overflow Handling Card -->
+            <section class="card overflow-handling">
+                <div class="card-header">
+                    <h2 class="card-title">Overflow handling</h2>
+                </div>
+                <p class="card-description">
+                    Define conditions for queue overflows and actions to resolve them.
+                    <a href="#" class="learn-more-link">Learn more</a>
+                </p>
+                <button class="btn btn-primary">
+                    <svg class="icon"><use href="#icon-plus"/></svg>
+                    Add condition-action pair
+                </button>
+            </section>
+
+            <!-- Operation Hours Section -->
+            <section class="card operation-hours">
+                <div class="card-header">
+                    <h2 class="card-title">Operation hours</h2>
+                    <span class="optional-label">Optional</span>
+                </div>
+                <h3 class="operation-subtitle">Set your operation hours</h3>
+                <p class="card-description">
+                    Work items can be assigned in the default queue during the set operation hours or wait to be assigned during the operation hours. You can set up conditions to create exception for out of operation hours.
+                    <a href="#" class="learn-more-link">Learn more</a> |
+                    <a href="#" class="learn-more-link">Assignment methods for queues</a>
+                </p>
+                <button class="btn btn-primary">
+                    <svg class="icon"><use href="#icon-plus"/></svg>
+                    Set operation hours
+                </button>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
