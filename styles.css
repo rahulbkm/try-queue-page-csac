@@ -634,6 +634,29 @@ button {
     font-size: 14px;
 }
 
+/* Side-by-side cards layout */
+.cards-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.cards-row .card {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Responsive: stack cards on smaller screens */
+@media (max-width: 900px) {
+    .cards-row {
+        flex-direction: column;
+    }
+    
+    .cards-row .card {
+        margin-bottom: 16px;
+    }
+}
+
 /* Responsive adjustments */
 @media (max-width: 1200px) {
     .queue-header {
