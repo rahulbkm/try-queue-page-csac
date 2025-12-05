@@ -608,9 +608,28 @@ button {
     margin-bottom: 16px;
 }
 
+.overflow-handling {
+    text-align: center;
+}
+
+.overflow-handling .card-header,
+.overflow-handling .card-description {
+    text-align: left;
+}
+
 /* Operation Hours */
 .operation-hours .card-header {
     gap: 8px;
+}
+
+.operation-hours {
+    text-align: center;
+}
+
+.operation-hours .card-header,
+.operation-hours .operation-subtitle,
+.operation-hours .card-description {
+    text-align: left;
 }
 
 .optional-label {
