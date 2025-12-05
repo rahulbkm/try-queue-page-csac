@@ -604,13 +604,32 @@ button {
 }
 
 /* Overflow Handling */
+.overflow-handling {
+    text-align: center;
+}
+
+.overflow-handling .card-header,
+.overflow-handling .card-description {
+    text-align: left;
+}
+
 .overflow-handling .card-description {
     margin-bottom: 16px;
 }
 
 /* Operation Hours */
+.operation-hours {
+    text-align: center;
+}
+
 .operation-hours .card-header {
     gap: 8px;
+    text-align: left;
+}
+
+.operation-hours .operation-subtitle,
+.operation-hours .card-description {
+    text-align: left;
 }
 
 .optional-label {
