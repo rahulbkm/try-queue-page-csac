@@ -391,10 +391,10 @@
                 <!-- Assignment Method Card -->
                 <section class="card assignment-method">
                     <div class="card-header">
-                        <h2 class="card-title">Assignment method</h2>
-                        <a href="#" class="learn-more-link">Learn more</a>
-                    </div>
-                    <div class="card-subheader">
+                        <div class="card-title-group">
+                            <h2 class="card-title">Assignment method</h2>
+                            <a href="#" class="learn-more-link">Learn more</a>
+                        </div>
                         <a href="#" class="see-more-link">
                             <svg class="icon"><use href="#icon-eye"/></svg>
                             See more
@@ -432,6 +432,25 @@
                 </section>
             </div>
 
+            <!-- Channel Profile Card -->
+            <section class="card channel-profile">
+                <div class="card-header">
+                    <h2 class="card-title">Channel profile</h2>
+                </div>
+                <p class="card-description">
+                    If a profile is selected, all the configuration from the profile will apply to the conversations in this queue. If no profile is selected, the configurations from the workstream will apply.
+                </p>
+                <div class="profile-select-container">
+                    <select id="channel-profile-select" class="profile-select">
+                        <option value="">Select a profile</option>
+                        <option value="Direct banking">Direct banking</option>
+                        <option value="Business banking VIP">Business banking VIP</option>
+                        <option value="Business banking general">Business banking general</option>
+                        <option value="Lending">Lending</option>
+                    </select>
+                </div>
+            </section>
+
             <!-- Operation Hours Section -->
             <section class="card operation-hours">
                 <div class="card-header">
@@ -451,5 +470,45 @@
             </section>
         </main>
     </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- JavaScript for Toast Notification -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileSelect = document.getElementById('channel-profile-select');
+            const toastContainer = document.getElementById('toast-container');
+
+            profileSelect.addEventListener('change', function() {
+                const selectedProfile = this.value;
+                if (selectedProfile) {
+                    showToast(selectedProfile + ' has been applied for this queue');
+                }
+            });
+
+            function showToast(message) {
+                const toast = document.createElement('div');
+                toast.className = 'toast toast-success';
+                // Using textContent to safely set the message (auto-escapes HTML)
+                toast.textContent = message;
+                toastContainer.appendChild(toast);
+
+                // Small delay (10ms) required to trigger CSS transition after DOM insertion
+                setTimeout(function() {
+                    toast.classList.add('show');
+                }, 10);
+
+                // Auto-dismiss after 3 seconds
+                setTimeout(function() {
+                    toast.classList.remove('show');
+                    // Wait for fade-out animation (300ms) before removing from DOM
+                    setTimeout(function() {
+                        toast.remove();
+                    }, 300);
+                }, 3000);
+            }
+        });
+    </script>
 </body>
 </html>

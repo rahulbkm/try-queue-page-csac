@@ -542,6 +542,18 @@ button {
 }
 
 /* Assignment Method Card */
+.assignment-method .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .assignment-content {
     display: flex;
     align-items: flex-start;
@@ -718,4 +730,78 @@ button {
     .card-actions {
         flex-wrap: wrap;
     }
+}
+
+/* Channel Profile Card */
+.channel-profile {
+    margin-bottom: 16px;
+}
+
+.channel-profile .card-description {
+    margin-bottom: 16px;
+}
+
+.profile-select-container {
+    max-width: 300px;
+}
+
+.profile-select {
+    width: 100%;
+    height: 36px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid #8a8886;
+    border-radius: 4px;
+    background-color: white;
+    color: #323130;
+    cursor: pointer;
+    appearance: none;
+    /* Chevron down icon for dropdown indicator (inline SVG for self-contained styling) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23605e5c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+.profile-select:focus {
+    outline: none;
+    border-color: #0078d4;
+    box-shadow: 0 0 0 1px #0078d4;
+}
+
+.profile-select:hover {
+    border-color: #323130;
+}
+
+/* Toast Notification */
+.toast-container {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast-success {
+    background-color: #107c10;
+    color: white;
 }
